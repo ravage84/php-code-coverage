@@ -6,7 +6,7 @@ pipeline {
                 sh 'composer install'
                 sh 'php vendor/bin/phpunit --coverage-openclover ./clover.xml'
                 clover(
-                    cloverReportDir: 'build/logs',
+                    cloverReportDir: './',
                     cloverReportFileName: 'clover.xml',
                     healthyTarget: [methodCoverage: 70, conditionalCoverage: 80, statementCoverage: 80],
                     unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
