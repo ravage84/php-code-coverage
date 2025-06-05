@@ -7,9 +7,9 @@ pipeline {
                 sh 'php vendor/bin/phpunit --coverage-openclover ./clover.xml'
                 recordCoverage(
                     skipPublishingChecks: true,
-                    ignoreParsingErrors: true,
+                    ignoreParsingErrors: false,
                     tools: [
-                        [parser: 'CLOVER', pattern: 'build/logs/clover.xml']
+                        [parser: 'CLOVER', pattern: 'clover.xml']
                     ]
                 )
                 clover(
