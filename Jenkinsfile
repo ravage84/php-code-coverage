@@ -5,6 +5,13 @@ pipeline {
             steps {
                 sh 'composer install'
                 sh 'php vendor/bin/phpunit --coverage-openclover ./clover.xml'
+                recordCoverage(
+                    skipPublishingChecks: true,
+                    ignoreParsingErrors: true,
+                    tools: [
+                        [parser: 'CLOVER', pattern: 'build/logs/clover.xml']
+                    ]
+                )
                 clover(
                     cloverReportDir: './',
                     cloverReportFileName: 'clover.xml',
